@@ -1,0 +1,67 @@
+//The ERD used on this project was created by using dbdiagram.io tools
+
+
+//Add tables
+Table movies {
+   id integer [pk]
+   title varchar(255) [not null, unique]
+   year integer
+  }
+Table people {
+  id integer [pk]
+  name varchar [not null, unique]
+  gender varchar(10)
+}
+Table credits {
+  person_id integer [pk]
+  movie_id integer [not null]
+  type   varchar [not null]
+  note varchar
+  character varchar
+  position integer
+  line_order integer
+  group_order integer
+  subgroup_oder integer
+}
+Table certificates {
+  movie_id integer [not null]
+  country varchar [not null]
+  certificate varchar [not null]
+  note varchar
+}
+Table genres {
+  movie_id integer [not null]
+  genre varchar [not null]
+}
+Table keywords {
+  movie_id integer [not null]
+  keyword varchar [not null]
+}
+Table languages {
+  movie_id integer [not null]
+  language varchar [not null]
+  note varchar
+}
+Table locations {
+  movie_id integer [not null]
+  location varchar [not null]
+  note varchar
+}
+Table release_dates {
+  movie_id integer [not null]
+  country varchar [not null]
+  release_date varchar [not null]
+  note varchar
+}
+
+// Creating references
+// > many-to-one; < one-to-many; - one-to-one; <> many-to-many
+Ref: credits.person_id - people.id
+Ref: credits.movie_id - movies.id
+Ref: certificates.movie_id - movies.id
+Ref: genres.movie_id - movies.id
+Ref: keywords.movie_id - movies.id
+Ref: languages.movie_id -  movies.id
+Ref: locations.movie_id - movies.id
+Ref: release_dates.movie_id - movies.id
+
